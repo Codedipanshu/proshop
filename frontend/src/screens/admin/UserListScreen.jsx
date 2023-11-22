@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 const UserListScreen = () => {
   const { data: users, refetch, isLoading, error } = useGetUsersQuery();
 
-  const [deleteUser] = useDeleteUserMutation();
+  const [deleteUser, { isLoading: loadinDelete }] = useDeleteUserMutation();
 
   const deleteHandler = async (id) => {
     if (window.confirm("Are you sure")) {
@@ -29,6 +29,7 @@ const UserListScreen = () => {
   return (
     <>
       <h1>Users</h1>
+      {loadinDelete && <Loader />}
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -62,8 +63,8 @@ const UserListScreen = () => {
                   )}
                 </td>
                 <td>
-                  {!user.isAdmin && (
-                    <>
+                  {/* {!user.isAdmin && (
+                    <> */}
                       <LinkContainer
                         to={`/admin/user/${user._id}/edit`}
                         style={{ marginRight: "10px" }}
@@ -79,8 +80,8 @@ const UserListScreen = () => {
                       >
                         <FaTrash style={{ color: "white" }} />
                       </Button>
-                    </>
-                  )}
+                    {/* </>
+                  )} */}
                 </td>
               </tr>
             ))}
