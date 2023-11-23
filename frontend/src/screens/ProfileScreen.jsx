@@ -13,8 +13,8 @@ import { useGetMyOrdersQuery } from "../slices/ordersApiSlice";
 const ProfileScreen = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password] = useState("");
+  const [confirmPassword] = useState("");
 
   const dispatch = useDispatch();
 
